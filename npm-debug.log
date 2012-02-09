@@ -1,0 +1,40 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/usr/local/bin/npm', 'test' ]
+info using npm@1.1.0-3
+info using node@v0.6.10
+verbose config file /Users/jhamlet/.npmrc
+verbose config file /usr/local/etc/npmrc
+verbose config file /usr/local/lib/node_modules/npm/npmrc
+verbose caching /Users/jhamlet/Sources/node-exparser/package.json
+verbose loadDefaults exparser@0.0.1
+verbose run-script [ 'pretest', 'test', 'posttest' ]
+info pretest exparser@0.0.1
+info test exparser@0.0.1
+verbose unsafe-perm in lifecycle true
+silly exec sh "-c" "mocha ./test/test-*.js"
+silly spawning [ 'sh',
+silly spawning   [ '-c', 'mocha ./test/test-*.js' ],
+silly spawning   '/Users/jhamlet/Sources/node-exparser' ]
+info exparser@0.0.1 Failed to exec test script
+ERR! exparser@0.0.1 test: `mocha ./test/test-*.js`
+ERR! `sh "-c" "mocha ./test/test-*.js"` failed with 1
+ERR! 
+ERR! Failed at the exparser@0.0.1 test script.
+ERR! This is most likely a problem with the exparser package,
+ERR! not with npm itself.
+ERR! Tell the author that this fails on your system:
+ERR!     mocha ./test/test-*.js
+ERR! You can get their info via:
+ERR!     npm owner ls exparser
+ERR! There is likely additional logging output above.
+ERR! 
+ERR! System Darwin 11.3.0
+ERR! command "node" "/usr/local/bin/npm" "test"
+ERR! cwd /Users/jhamlet/Sources/node-exparser
+ERR! node -v v0.6.10
+ERR! npm -v 1.1.0-3
+ERR! code ELIFECYCLE
+ERR! message exparser@0.0.1 test: `mocha ./test/test-*.js`
+ERR! message `sh "-c" "mocha ./test/test-*.js"` failed with 1
+ERR! errno {}
+verbose exit [ 1, true ]

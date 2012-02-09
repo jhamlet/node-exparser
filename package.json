@@ -1,0 +1,32 @@
+{   
+    "name": "exparser",
+    "description": "",
+    "version": "0.0.1",
+    "keywords": ["regular", "expression", "parser"],
+    "main": "./lib/parser.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "dependencies": {
+        "proteus":  ">=0.0.x",
+        "strscan":  ">=1.0.x"
+    },
+    "devDependencies": {
+        "mocha": "0.3.x",
+        "should": "0.5.x"
+    },
+    "scripts": {
+        "test": "mocha ./test/test-*.js"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://github.com/jhamlet/node-exparser/raw/master/LICENSE"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/jhamlet/node-exparser.git"
+    },
+    "preferGlobal": true
+}
