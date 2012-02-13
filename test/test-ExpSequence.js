@@ -3,7 +3,7 @@ var should = require("should"),
     ExpSeq = require("../lib/ExpSequence")
 ;
 
-suite("ExpSequence", function () {
+suite("Expression Sequence", function () {
 
     test("Basic sequence matching", function () {
         var seq = new ExpSeq(/@/, /(include|depends?)/, /\s+/, /([^\s]+)/),
@@ -79,4 +79,9 @@ suite("ExpSequence", function () {
         match.should.eql("@depends some/path/to/a/file.js");
     });
     
+    test("Function as first pattern throws an exception", function () {
+        (function () {
+            new ExpSeq(function (s) {});
+        }).should.throw();
+    });
 });
