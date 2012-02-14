@@ -1,8 +1,16 @@
 {   
     "name": "exparser",
-    "description": "",
+    "description": "An string scanner/parser for finding sequences of expressions.",
     "version": "0.0.1",
-    "keywords": ["regular", "expression", "parser"],
+    "keywords": [
+        "regular",
+        "expression",
+        "parser",
+        "text",
+        "string",
+        "scanner",
+        "sequence"
+    ],
     "main": "./lib/parser.js",
     "directories": {
         "lib": "lib"
