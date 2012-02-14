@@ -1,3 +1,4 @@
+/*globals suite, test, setup, teardown */
 
 var should = require("should"),
     ExpSeq = require("../lib/ExpSequence")
@@ -77,11 +78,5 @@ suite("Expression Sequence", function () {
         captures.should.include("some/path/to/a/file.js");
         
         match.should.eql("@depends some/path/to/a/file.js");
-    });
-    
-    test("Function as first pattern throws an exception", function () {
-        (function () {
-            new ExpSeq(function (s) {});
-        }).should.throw();
     });
 });
