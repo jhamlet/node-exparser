@@ -3,7 +3,7 @@ Expression Parser
 =================
 
 ```js
-var ExpressionScanner = require("exparser"),
-    parser = new ExpressionScanner()
+var ExpressionParser = require("exparser"),
+    parser = new ExpressionParser()
 ;
 ```
