@@ -54,7 +54,7 @@ suite("Expression Parser", function () {
                         pre   = p.getPreExpression(),
                         path  = captures[0]
                     ;
-
+                    
                     path.should.equal("some/file/to/include.js");
                     pre.should.equal("// ");
                     match.should.equal("@include some/file/to/include.js");
@@ -70,7 +70,7 @@ suite("Expression Parser", function () {
                     match.should.equal("@depend some/file/to/depend.js");
                 }
             }
-        })
+        });
         
         parser.parse(
             "// @include some/file/to/include.js // comments\n" +
@@ -79,7 +79,13 @@ suite("Expression Parser", function () {
         
         // Did we match our pre-expressions?
         count.should.equal(2);
-        // The right remainder of the string to parse?
+        // The right remainder of the string left over?
         parser.scanner.getRemainder().should.equal(" \n");
+    });
+    
+    test("If/Else with RegExp Sequence", function () {
+        var parser = new ExParser();
+        
+        parser.addExpression("if", [/@/, /if/, /\s+/, /([^\n]+)/, /(?!@)/]);
     });
 });

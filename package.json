@@ -1,7 +1,7 @@
 {   
     "name": "exparser",
     "description": "An string scanner/parser for finding sequences of expressions.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "keywords": [
         "regular",
         "expression",
@@ -24,7 +24,7 @@
         "should": "0.5.x"
     },
     "scripts": {
-        "test": "mocha ./test/test-*.js"
+        "test": "mocha"
     },
     "licenses": [
         {
