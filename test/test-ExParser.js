@@ -82,10 +82,4 @@ suite("Expression Parser", function () {
         // The right remainder of the string left over?
         parser.scanner.getRemainder().should.equal(" \n");
     });
-    
-    test("If/Else with RegExp Sequence", function () {
-        var parser = new ExParser();
-        
-        parser.addExpression("if", [/@/, /if/, /\s+/, /([^\n]+)/, /(?!@)/]);
-    });
 });
