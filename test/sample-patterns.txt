@@ -1,0 +1,15 @@
+
+// @depend some/path/to/file.js
+// @depends some/other/path/file.js
+// @include some/file/path.js
+// @require some-module.js
+
+/**
+ * @require some-module.js
+ * @depend some/path/to/file.js
+ * @depends some/other/path/file.js
+ * @include some/file/path.js
+ */
+
+$TOKEN.REPLACEMENT-PATTERN$
+"$OTHER.TOKEN.REPLACEMENT-PATTERN";

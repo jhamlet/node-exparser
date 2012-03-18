@@ -1,7 +1,7 @@
 {   
     "name": "exparser",
     "description": "An string scanner/parser for finding sequences of expressions.",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "keywords": [
         "regular",
         "expression",
@@ -11,13 +11,13 @@
         "scanner",
         "sequence"
     ],
-    "main": "./lib/parser.js",
+    "main": "./lib/ExParser.js",
     "directories": {
         "lib": "lib"
     },
     "dependencies": {
         "proteus":  ">=0.0.x",
-        "strscan":  ">=1.0.x"
+        "pstrscan":  ">=0.1.x"
     },
     "devDependencies": {
         "mocha": "0.3.x",

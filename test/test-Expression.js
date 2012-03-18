@@ -1,13 +1,13 @@
 /*globals suite, test, setup, teardown */
 
 var should = require("should"),
-    ExpSeq = require("../lib/ExpSequence")
+    Expression = require("../lib/Expression")
 ;
 
-suite("Expression Sequence", function () {
+suite("Expression", function () {
 
     test("Basic sequence matching", function () {
-        var seq = new ExpSeq(/@/, /(include|depends?)/, /\s+/, /([^\s]+)/),
+        var seq = new Expression([/@/, /(include|depends?)/, /\s+/, /([^\s]+)/]),
             captures
         ;
         
@@ -22,8 +22,8 @@ suite("Expression Sequence", function () {
 
     test("Nested sequence matching", function () {
         var startToken = /@/,
-            dirStart   = new ExpSeq(startToken, /(\w+)/),
-            dirExp     = new ExpSeq(dirStart, /\s+/, /([^\s]+)/),
+            dirStart   = new Expression([startToken, /(\w+)/]),
+            dirExp     = new Expression([dirStart, /\s+/, /([^\s]+)/]),
             captures, match
         ;
         
@@ -38,11 +38,11 @@ suite("Expression Sequence", function () {
     });
     
     test("Functions used to match", function () {
-        var seq = new ExpSeq(/@/, function (s) {
+        var seq = new Expression([/@/, function (s) {
                 if (s.scan(/\w+/)) {
                     return [s.getMatch()];
                 }
-            }, /\s+/, /([^\s]+)/),
+            }, /\s+/, /([^\s]+)/]),
             match, captures
         ;
         
@@ -59,13 +59,13 @@ suite("Expression Sequence", function () {
         var startToken  = /@/,
             dirWord     = /(include|depends?)/i,
             whiteSpace  = /\s+/,
-            dirStart    = new ExpSeq(startToken, dirWord, whiteSpace),
-            dirExp      = new ExpSeq(dirStart, function (scanner) {
+            dirStart    = new Expression([startToken, dirWord, whiteSpace]),
+            dirExp      = new Expression([dirStart, function (scanner) {
                 var match;
                 if ((match = scanner.scan(/([^\s]+)/))) {
                     return [match];
                 }
-            }),
+            }]),
             match,
             captures
         ;

@@ -9,17 +9,20 @@ var should   = require("should"),
 suite("Expression Parser", function () {
     
     test("Simple include", function () {
-        var parser = new ExParser({
+        var matched = false,
+            parser = new ExParser({
                 expressions: {
                     include: INCLUDE_SEQUENCE,
                 },
                 handlers: {
-                    include: function (p, captures) {
-                        var match = p.match,
-                            pre   = p.getPreExpression(),
-                            path  = captures[0]
+                    include: function (captures, p) {
+                        var match = captures[0],
+                            path  = captures[1],
+                            pre   = p.getPreExpression()
                         ;
-
+                        
+                        matched = true;
+                        
                         path.should.equal("some/path/to/file.js");
                         match.should.equal("@include some/path/to/file.js");
                         pre.should.equal("// ");
@@ -28,6 +31,8 @@ suite("Expression Parser", function () {
             });
         
         parser.parse("// @include some/path/to/file.js ");
+        
+        matched.should.equal(true);
     });
     
     test("Multiple expressions", function () {
@@ -45,25 +50,30 @@ suite("Expression Parser", function () {
                 depends: DEPENDS_SEQUENCE
             },
             handlers: {
-                preExpression: function (p, txt) {
+                preExpression: function (txt, p) {
+                    // console.log("PREEXPRESSION");
                     txt.should.equal(preExpressions[count]);
                     count++;
                 },
-                include: function (p, captures) {
-                    var match = p.match,
-                        pre   = p.getPreExpression(),
-                        path  = captures[0]
+                include: function (captures, p) {
+                    var match = captures[0],
+                        path  = captures[1],
+                        pre   = p.getPreExpression()
                     ;
+                    
+                    // console.log("INCLUDE");
                     
                     path.should.equal("some/file/to/include.js");
                     pre.should.equal("// ");
                     match.should.equal("@include some/file/to/include.js");
                 },
-                depends: function (p, captures) {
-                    var match = p.match,
-                        pre   = p.getPreExpression(),
-                        path  = captures[0]
+                depends: function (captures, p) {
+                    var match = captures[0],
+                        path  = captures[1],
+                        pre   = p.getPreExpression()
                     ;
+                    
+                    // console.log("DEPENDS");
                     
                     path.should.equal("some/file/to/depend.js");
                     pre.should.equal(" // comments\n// ");
