@@ -79,4 +79,72 @@ suite("Expression", function () {
         
         match.should.eql("@depends some/path/to/a/file.js");
     });
+    
+    test("One 'or' at a time", function () {
+        var exp = new Expression(/@/),
+            captures
+        ;
+        
+        exp.and(/(depends?)/).or(/(include)/);
+        
+        captures = exp.exec("@include some/path/to/file.js");
+        captures[0].should.eql("@include");
+        captures[1].should.eql("include");
+        
+        captures = exp.exec("@depends some/path/to/file.js");
+        captures[0].should.eql("@depends"); // match
+        captures[1].should.eql("depends"); // capture
+    });
+    
+    test("Adding 'or' condition in multiples", function () {
+        var exp = new Expression(/@/),
+            captures
+        ;
+        
+        exp.or(/(depends?)/, /(include)/);
+        
+        captures = exp.exec("@include some/path/to/file.js");
+        captures[0].should.eql("@include");
+        captures[1].should.eql("include");
+        
+        captures = exp.exec("@depends some/path/to/file.js");
+        captures[0].should.eql("@depends"); // match
+        captures[1].should.eql("depends"); // capture
+    });
+    
+    test("Extended expression generation", function () {
+        var exp = new Expression(/@/),
+            captures
+        ;
+        
+        exp.and(/(depends?)/).or(/include/).and(/\s+/).and(/([^\s]+)/);
+        
+        captures = exp.exec("@depends some/path/to/file.js");
+        captures[0].should.eql("@depends some/path/to/file.js");
+        captures[1].should.eql("depends");
+        captures[2].should.eql("some/path/to/file.js");
+        
+        exp = new Expression(/@/);
+        exp.or(/(depends?)/, /(include)/);
+        exp.and(/\s+/, /([^\s]+)/);
+        
+        captures = exp.exec("@depend some/path/to/file.js");
+        captures[0].should.eql("@depend some/path/to/file.js");
+        captures[1].should.eql("depend");
+        captures[2].should.eql("some/path/to/file.js");
+        
+        exp = new Expression(/@/);
+        exp.and(/(depends)/).or(/(depend)/);
+        exp.and(/\s+/).and(function (s) {
+            var match;
+            if ((match = s.scanUntil(/\s/))) {
+                return [match];
+            }
+        });
+        
+        captures = exp.exec("@depends some/path/to/file.js ");
+        captures[0].should.eql("@depends some/path/to/file.js ");
+        captures[1].should.eql("depends");
+        captures[2].should.eql("some/path/to/file.js ");
+    });
 });

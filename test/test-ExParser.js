@@ -31,7 +31,7 @@ suite("Expression Parser", function () {
             });
         
         parser.parse("// @include some/path/to/file.js ");
-        
+
         matched.should.equal(true);
     });
     
