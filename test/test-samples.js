@@ -46,7 +46,7 @@ suite("Samples", function () {
         start, finish
     ;
     
-    text = Array(5000).join(text);
+    text = Array(500).join(text);
     console.log(text.length);
 
     console.log(parser.getPivotPattern());
