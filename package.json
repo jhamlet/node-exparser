@@ -24,7 +24,7 @@
         "should": "0.5.x"
     },
     "scripts": {
-        "test": "mocha"
+        "test": "mocha test/test-Ex*"
     },
     "licenses": [
         {
