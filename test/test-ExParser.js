@@ -14,11 +14,11 @@ suite("Expression Parser", function () {
                 expressions: {
                     include: INCLUDE_SEQUENCE,
                 },
-                handlers: {
+                listeners: {
                     include: function (captures, p) {
                         var match = captures[0],
                             path  = captures[1],
-                            pre   = p.getPreExpression()
+                            pre   = p.getLastText()
                         ;
                         
                         matched = true;
@@ -37,9 +37,12 @@ suite("Expression Parser", function () {
     
     test("Multiple expressions", function () {
         var count = 0,
-            preExpressions = [
+            includeMatch = false,
+            dependMatch = false,
+            texts = [
                 "// ",
-                " // comments\n// "
+                " // comments\n// ",
+                " \n"
             ],
             parser
         ;
@@ -49,16 +52,16 @@ suite("Expression Parser", function () {
                 include: INCLUDE_SEQUENCE,
                 depends: DEPENDS_SEQUENCE
             },
-            handlers: {
-                preExpression: function (txt, p) {
+            listeners: {
+                text: function (txt, p) {
                     // console.log("PREEXPRESSION");
-                    txt.should.equal(preExpressions[count]);
+                    txt.should.equal(texts[count]);
                     count++;
                 },
                 include: function (captures, p) {
                     var match = captures[0],
                         path  = captures[1],
-                        pre   = p.getPreExpression()
+                        pre   = p.getLastText()
                     ;
                     
                     // console.log("INCLUDE");
@@ -66,11 +69,13 @@ suite("Expression Parser", function () {
                     path.should.equal("some/file/to/include.js");
                     pre.should.equal("// ");
                     match.should.equal("@include some/file/to/include.js");
+                    
+                    includeMatch = true;
                 },
                 depends: function (captures, p) {
                     var match = captures[0],
                         path  = captures[1],
-                        pre   = p.getPreExpression()
+                        pre   = p.getLastText()
                     ;
                     
                     // console.log("DEPENDS");
@@ -78,6 +83,8 @@ suite("Expression Parser", function () {
                     path.should.equal("some/file/to/depend.js");
                     pre.should.equal(" // comments\n// ");
                     match.should.equal("@depend some/file/to/depend.js");
+                    
+                    dependMatch = true;
                 }
             }
         });
@@ -87,9 +94,9 @@ suite("Expression Parser", function () {
             "// @depend some/file/to/depend.js \n"
         );
         
+        includeMatch.should.equal(true);
+        dependMatch.should.equal(true);
         // Did we match our pre-expressions?
-        count.should.equal(2);
-        // The right remainder of the string left over?
-        parser.scanner.getRemainder().should.equal(" \n");
+        count.should.equal(3);
     });
 });

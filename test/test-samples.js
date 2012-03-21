@@ -3,6 +3,7 @@
 var should = require("should"),
     ExParser = require("../"),
     Expression = ExParser.Expression,
+    textSize = parseInt(process.env["TEXT_MULTIPLE"], 10),
     FS = require("fs"),
     WORD_PATTERN = /(([\w_-]+\.?)+)/,
     INCLUDE_EXP = new Expression([/@/, /include/, /\s+/, /([^\s]+)/]),
@@ -46,7 +47,7 @@ suite("Samples", function () {
         start, finish
     ;
     
-    text = Array(500).join(text);
+    text = Array(textSize || 2000).join(text);
     console.log(text.length);
 
     console.log(parser.getPivotPattern());
