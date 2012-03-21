@@ -1,7 +1,7 @@
 {   
     "name": "exparser",
     "description": "A string scanner/parser for finding sequences of expressions.",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "keywords": [
         "regular",
         "expression",
