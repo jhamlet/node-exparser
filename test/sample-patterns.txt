@@ -13,3 +13,6 @@
 
 $TOKEN.REPLACEMENT-PATTERN$
 "$OTHER.TOKEN.REPLACEMENT-PATTERN$";
+
+var tmp = require("temp");
+
