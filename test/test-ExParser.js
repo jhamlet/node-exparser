@@ -11,9 +11,9 @@ suite("Expression Parser", function () {
     test("Simple include", function () {
         var matched = false,
             parser = new ExParser({
-                expressions: {
-                    include: INCLUDE_SEQUENCE,
-                },
+                expressions: [
+                    ["include", INCLUDE_SEQUENCE]
+                ],
                 listeners: {
                     include: function (captures, p) {
                         var match = captures[0],
@@ -48,10 +48,10 @@ suite("Expression Parser", function () {
         ;
         
         parser = new ExParser({
-            expressions: {
-                include: INCLUDE_SEQUENCE,
-                depends: DEPENDS_SEQUENCE
-            },
+            expressions: [
+                ["include", INCLUDE_SEQUENCE],
+                ["depends", DEPENDS_SEQUENCE]
+            ],
             listeners: {
                 text: function (txt, p) {
                     // console.log("PREEXPRESSION");

@@ -29,12 +29,12 @@ suite("Samples", function () {
         requires = [];
         tokens   = [];
         parser = new ExParser({
-            expressions: {
-                include:     INCLUDE_EXP,
-                depend:      DEPEND_EXP,
-                require:     REQUIRE_EXP,
-                replacement: REPLACEMENT_EXP
-            },
+            expressions: [
+                ["include",     INCLUDE_EXP],
+                ["depend",      DEPEND_EXP],
+                ["require",     REQUIRE_EXP],
+                ["replacement", REPLACEMENT_EXP]
+            ],
             listeners: {
                 include: function (captures) {
                     var path = captures[1];
