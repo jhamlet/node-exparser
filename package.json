@@ -1,7 +1,7 @@
 {   
     "name": "exparser",
     "description": "A string scanner/parser for finding sequences of expressions.",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "keywords": [
         "regular",
         "expression",
@@ -35,6 +35,9 @@
     "repository": {
         "type": "git",
         "url": "http://github.com/jhamlet/node-exparser.git"
+    },
+    "bugs": {
+        "url": "http://github.com/jhamlet/node-exparser/issues"
     },
     "preferGlobal": true
 }
