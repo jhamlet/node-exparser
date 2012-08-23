@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/jhamlet/node-exparser.png)](http://travis-ci.org/jhamlet/node-exparser)
 
 ExParser
 ====
