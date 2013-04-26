@@ -27,8 +27,8 @@ npm install -g exparser
 These are installed when **exparser** is installed.
 
 ~~~
-proteus:  >=0.0.x
-pstrscan: >=0.1.x
+proteus:  0.1.x
+pstrscan: 0.1.x
 ~~~
 
 
@@ -37,8 +37,8 @@ pstrscan: >=0.1.x
 Installed when you run `npm link` in the package directory.
 
 ~~~
-mocha:  0.3.x
-should: 0.5.x
+mocha:  1.7.x
+should: 1.2.x
 ~~~
 
 

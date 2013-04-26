@@ -47,7 +47,7 @@ if (((new Date()).getFullYear() < FS.statSync("LICENSE").mtime.getFullYear()) ||
 // README file
 //---------------------------------------------------------------------------
 readMeFiles.include(
-    "README.tmpl", "package.json", "LICENSE", "AUTHORS", Path.basename(__filename)
+    "src/tmpl/README.tmpl", "package.json", "LICENSE", "AUTHORS", Path.basename(__filename)
 );
 
 desc("Generate the README.md documentation");
