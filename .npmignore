@@ -1,4 +1,4 @@
 .DS_store
 Sakefile*
-README.tmpl
+src/tmpl/
 test/
