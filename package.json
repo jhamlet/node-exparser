@@ -16,12 +16,12 @@
         "lib": "lib"
     },
     "dependencies": {
-        "proteus":  "=0.1.x",
-        "pstrscan":  "=0.1.x"
+        "proteus":  "0.1.x",
+        "pstrscan": "0.1.x"
     },
     "devDependencies": {
-        "mocha": "=0.3.x",
-        "should": "=0.5.x"
+        "mocha": "1.7.x",
+        "should": "1.2.x"
     },
     "scripts": {
         "test": "mocha test/test-Ex*"
